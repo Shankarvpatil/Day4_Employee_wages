@@ -1,26 +1,43 @@
-package uc1.Emloyee.Attendance;
-import java.util.*;
-public class Emp_Attendance {
+package uc6_Emp_mothly_wage_hr_day_conditon;
 
-	public static int Attendance() {
+import uc4_Wager_Using_Switch_Case.SwitchCase;
+
+public class Montly_Wage extends SwitchCase {
+
+	public static final int isFulltime = 1, isParttime = 2;
 	
-		Random random = new Random();
-		int check = random.nextInt(2);
-	
-		return check;
-	}
-	
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		
-		int check = Attendance();
-		int isPresent = 1, isAbsent = 0;
+		int TotalWage = 0, day = 0, WorkinHr = 0;
 		
-		if( check == isPresent ) {
-			System.out.println("Employee is present");	
+		while( day <= 20 || WorkinHr <= 100 ) {
+		
+			int check = Switch();
+			
+			switch (check) {
+			
+			case isFulltime:                                                        // full time wage
+				
+				day++;
+				WorkinHr += 8;
+				TotalWage += Wager();     // Daily wager
+				break;
+				
+			case isParttime:                                                        // part time wage
+				
+				day++;
+				WorkinHr += 4;
+				TotalWage += PartTimeWage();
+				break;
+				
+			default: 																	//Absent
+				day++;
+				WorkinHr += 0;
+                		TotalWage += 0;
+			}
 		}
-		
-		else {	
-			System.out.println("Employee is absent");
-		}	
+
+		System.out.println(" Employee Monthly wager = "+TotalWage);
 	}
+
 }
